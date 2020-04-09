@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2020 at 05:25 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.28
+-- Waktu pembuatan: 09 Apr 2020 pada 16.43
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_guru`
+-- Struktur dari tabel `d_guru`
 --
 
 CREATE TABLE `d_guru` (
@@ -38,24 +38,39 @@ CREATE TABLE `d_guru` (
   `Status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `d_guru`
+--
+
+INSERT INTO `d_guru` (`Nip`, `Nama`, `Alamat`, `Jns_Kel`, `NoHp`, `Jabatan`, `Status`) VALUES
+('18141019', 'Septian', 'Majalengka', 'Laki-laki', '087648343947', 'Kepala Sekolah', 'Aktif'),
+('321010018', 'Rio', 'Munjul', 'Laki-laki', '085624110856', 'Guru', 'Aktif');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_kelas`
+-- Struktur dari tabel `d_kelas`
 --
 
 CREATE TABLE `d_kelas` (
   `Id_Kelas` char(10) NOT NULL,
-  `Tahun_Ajar` varchar(5) NOT NULL,
+  `Tahun_Ajar` varchar(20) NOT NULL,
   `Tingkat` char(5) NOT NULL,
   `Nama_kelas` varchar(20) NOT NULL,
   `Wali_kelas` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `d_kelas`
+--
+
+INSERT INTO `d_kelas` (`Id_Kelas`, `Tahun_Ajar`, `Tingkat`, `Nama_kelas`, `Wali_kelas`) VALUES
+('19', '2019/2020', '4', 'informatika 4a', 'kukun');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_matapelajar`
+-- Struktur dari tabel `d_matapelajar`
 --
 
 CREATE TABLE `d_matapelajar` (
@@ -67,10 +82,17 @@ CREATE TABLE `d_matapelajar` (
   `Nip` char(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `d_matapelajar`
+--
+
+INSERT INTO `d_matapelajar` (`Kode_Mp`, `Tingkat`, `Semester`, `Jenis_Mp`, `Mata_Pelajar`, `Nip`) VALUES
+('040900', '4', '4', 'sbdl', 'sbdl', '04092000');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_nilai`
+-- Struktur dari tabel `d_nilai`
 --
 
 CREATE TABLE `d_nilai` (
@@ -82,10 +104,17 @@ CREATE TABLE `d_nilai` (
   `Nilai` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `d_nilai`
+--
+
+INSERT INTO `d_nilai` (`Id_Nilai`, `Tahun_Ajar`, `Tingkat`, `Nis`, `Kode_Md`, `Nilai`) VALUES
+('80', '2019/2020', '4', '181410019', '628', 80);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_siswa`
+-- Struktur dari tabel `d_siswa`
 --
 
 CREATE TABLE `d_siswa` (
@@ -97,40 +126,48 @@ CREATE TABLE `d_siswa` (
   `Jns_Kel` char(15) NOT NULL,
   `Agama` varchar(50) NOT NULL,
   `NoHP` char(15) NOT NULL,
-  `Tahun_Masuk` char(8) NOT NULL,
+  `Tahun_Masuk` char(20) NOT NULL,
   `Id_Kelas` char(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `d_siswa`
+--
+
+INSERT INTO `d_siswa` (`Nis`, `Nama`, `Alamat`, `Tmp_Lahir`, `Tgl_lahir`, `Jns_Kel`, `Agama`, `NoHP`, `Tahun_Masuk`, `Id_Kelas`) VALUES
+('04092000', 'Rio Nur Muhammad Septiyan', 'lingk.Marga Mulya.Desa Babakan Jawa,Kel.Majalengka', 'Majalengka,04 September 2000', '2000-09-04', 'laki-laki', 'Islam', '085724415313', '2018/2019', '040900'),
+('04092001', 'Rio N', 'Munjul', 'Majalengka', '1999-04-08', 'Laki-laki', 'Islam', '086849310759', '2018/2019', '040900');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `d_guru`
+-- Indeks untuk tabel `d_guru`
 --
 ALTER TABLE `d_guru`
   ADD PRIMARY KEY (`Nip`);
 
 --
--- Indexes for table `d_kelas`
+-- Indeks untuk tabel `d_kelas`
 --
 ALTER TABLE `d_kelas`
   ADD PRIMARY KEY (`Id_Kelas`);
 
 --
--- Indexes for table `d_matapelajar`
+-- Indeks untuk tabel `d_matapelajar`
 --
 ALTER TABLE `d_matapelajar`
   ADD PRIMARY KEY (`Kode_Mp`);
 
 --
--- Indexes for table `d_nilai`
+-- Indeks untuk tabel `d_nilai`
 --
 ALTER TABLE `d_nilai`
   ADD PRIMARY KEY (`Id_Nilai`);
 
 --
--- Indexes for table `d_siswa`
+-- Indeks untuk tabel `d_siswa`
 --
 ALTER TABLE `d_siswa`
   ADD PRIMARY KEY (`Nis`);
